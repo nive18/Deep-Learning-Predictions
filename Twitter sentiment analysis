@@ -1,0 +1,20 @@
+import tweepy
+from textblob import TextBlob
+consumer_key =  'S0fClpilhwvtFc2STwDBAbiRF'
+consumer_secret =  '2Q0P37zODHigdZsbc5pak00qSsyA04t1ueU4oNzBLvxzzr4JHE'
+access_token = '882231243231739905-qfkeOQBseYUlKb1m6Iw26yXo0yuS8w9'
+access_token_secret =  '3WXeS8LD1GlT6lgReS2H8Uey0yQgEuiy1WWFt5FXQ5BW3'
+#Create the oauthntication handler to authorize using tweepy
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+#Create main variable
+api = tweepy.API(auth)
+#We will search for the api
+public_tweets = api.search('Modi')
+#We are travelling through public api
+for tweets in public_tweets:
+    print(tweets.text)
+    #Perform sentiment text analysis
+    analysis = TextBlob(tweets.text)
+    print(analysis.sentiment)
+    print("")
